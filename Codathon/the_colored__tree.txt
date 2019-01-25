@@ -1,0 +1,78 @@
+#include<bits/stdc++.h> 
+using namespace std; 
+ 
+int start[100001]; 
+int endd[100001]; 
+ 
+ 
+vector<int>dfs_order; 
+vector<int>adj[100001]; 
+int visited[100001]; 
+void dfs(int a,int &b) 
+{ 
+ 
+	 
+	visited[a]=1; 
+	b++; 
+	start[a]=b; 
+	dfs_order.push_back(a); 
+	
+	for(vector<int>:: iterator it=adj[a].begin(); 
+						it!=adj[a].end();it++) 
+	{ 
+		if(!visited[*it]) 
+		{ 
+			dfs(*it,b); 
+		} 
+	} 
+	endd[a]=b; 
+} 
+ 
+int main() 
+{ 
+	 int n;
+    cin>>n;
+    int c[n+1];
+    for(int i=1;i<=n;i++)
+    {
+        cin>>c[i];
+    }
+    int u,v;
+    for(int i=0;i<n-1;i++)
+    {
+        cin>>u>>v;
+        adj[u].push_back(v);
+         adj[v].push_back(u);
+    }
+    int k=0;
+    dfs(1,k);
+    
+    int q;cin>>q;
+    int w,e,r;
+    cout<<endl;
+    while(q--)
+    {
+        cin>>w>>e>>r;
+        if(w==1)
+        {
+            c[e]=r;
+        }
+        else
+        {
+               long long x=0;
+               //cout<<endd[1]<<endl;
+        for(int j=start[e];j<=endd[e];j++)
+        {
+            if(c[dfs_order[j-1]]%r==0)
+            {
+                x++;
+               // cout<<c[dfs_order[j-1]]<<endl;
+            }
+        }
+        cout<<(x*(x-1))/2<<endl;
+        }
+    }
+ 
+	return 0; 
+ 
+} 

@@ -1,0 +1,41 @@
+/*
+// Sample code to perform I/O:
+
+cin >> name;                            // Reading input from STDIN
+cout << "Hi, " << name << ".\n";        // Writing output to STDOUT
+
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+*/
+
+// Write your code here
+#include<iostream>
+#define ll long long
+long long m=1000000007;
+ll powe(ll a,ll b)
+{
+    if(b==0)
+    {
+        return 1;
+    }
+    else if(b%2==0)
+    {
+        return powe((a*a)%m,b/2)%m;
+    }
+    return (a%m*powe((a*a)%m,b/2)%m);
+}
+using namespace std;
+int main()
+{
+    ll t;
+    ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+
+    scanf("%lld",&t);
+    while(t--)
+    {
+        ll n;
+        scanf("%lld",&n);
+       ll x=(n%m*powe(2,n-1)%m)%m;
+        cout<<x<<'\n';
+    }
+}

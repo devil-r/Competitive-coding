@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;cin>>t;
+    while(t--)
+    {
+        int k,s=0;cin>>k;
+        int a,b,c;cin>>a>>b>>c;
+        for(int i=0;i<=7;i++)
+        {
+            int x=0;
+            if(i&1)
+            {
+                x+=a;
+            }
+            else
+            {
+                x-=a;
+            }
+            if(i&2)
+            {
+                x+=b;
+            }
+            else
+            {
+                x-=b;
+            }
+            if(i&4)
+            {
+                x+=c;
+            }
+            else
+            {
+                x-=c;
+            }
+        if(x==k)
+        {
+            cout<<"WIN"<<endl;
+            s=1;break;
+        }
+        }
+    
+    if(s==0){cout<<"LOSE"<<endl;}}
+}
